@@ -1,1 +1,1 @@
-# ALIOJULIO client
+# ALIOJULIO server
