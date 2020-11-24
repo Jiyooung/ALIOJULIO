@@ -1,6 +1,6 @@
 # ALIOJULIO
 
-<p align="center"> <img src="https://github.com/Jiyooung/Allyeojullio/blob/main/image/ALIOJULIO.jpg" alt="drawing" width="500"/>
+<p align="center"> <img src="https://github.com/Jiyooung/ALIOJULIO/blob/main/client/public/image/LOGO.png" alt="drawing" width="500"/>
 
 > Open Source-Based Design Study
 
