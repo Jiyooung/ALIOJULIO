@@ -1,0 +1,37 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var data = {
+            'X-API-AUTH-KEY': 'jVC39euvKCwk0YqoSuEl26kQih0HlRZO/bZK7+LIjLc=',
+            'pageSize': '3', // 데이터 개수
+            'schFstCateCd': '', // 행사 유형 대분류
+            'schScdCateCd': '', // 행사 유형 소분류
+            'schSiNa': '', // 시, 도명
+            'schSggNa': '', // 시, 군, 구명
+            'schEvtNa': '' // 키워드 (기관명, 시설명, 이용안내)
+        };
+
+        $.ajax({
+            url: "http://openapi.alioplus.go.kr/api/event",
+            type: "post",
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                alert("성공");
+                $("#content").html(JSON.stringify(data));
+            },
+            error: function (request, status, error) {
+                alert("실패");
+                var errorCode = request.status;
+                alert(error)
+                alert(status)
+                alert(errorCode);
+            }
+        });
+    });
+</script>
+
+<body>
+    <div id="content"></div>hello
+</body>
