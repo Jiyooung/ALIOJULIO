@@ -63,8 +63,8 @@ class cal_week extends React.PureComponent {
     const { classes } = this.props;
     return (
       <Grid container spacing={3}  >
-        <Grid item xs={2} >
-          <form className={sidebarStyles.form}>
+        <Grid item xs={2} className={sidebarStyles.form}>
+          <form >
             <input type="checkbox" id="menuicon"></input>
             <label for="menuicon" className={sidebarStyles.menubtn}>
               <span></span>
@@ -74,18 +74,39 @@ class cal_week extends React.PureComponent {
             <div className={sidebarStyles.container}>
               <div className={sidebarStyles.sidebar}>
                 <span className={sidebarStyles.area_desc}>
-                  <label className={sidebarStyles.label}>키워드</label>
+                  <label className={sidebarStyles.label}>행사명</label>
                   <input className={sidebarStyles.input_box}></input>
-                  <label className={sidebarStyles.label}>행사 분류</label>
+                  <label className={sidebarStyles.label}>행사유형</label>
                   <select className={sidebarStyles.combo_box}>
-                    <option value="행사1">행사1</option>
-                    <option value="행사2">행사2</option>
+                    <option value="전체">전체</option>
+                    <option value="견학_탐방">견학 탐방</option>
+                    <option value="체험">체험</option>
+                    <option value="교육_강연">교육 강연</option>
+                    <option value="세미나">세미나</option>
+                    <option value="공모전">공모전</option>
+                    <option value="자원봉사">자원봉사</option>
+                    <option value="문화_예술">문화 예술</option>
+                    <option value="국민참여">국민참여</option>
                   </select>
-                  <label className={sidebarStyles.label}>시, 도명</label>
+                  <label className={sidebarStyles.label}>지역</label>
                   <select className={sidebarStyles.combo_box}>
-                    <option value="시,도명">시,도명</option>
-                    <option value="서울시">서울시</option>
+                    <option value="전체">전체</option>
+                    <option value="강원도">강원도</option>
                     <option value="경기도">경기도</option>
+                    <option value="경상남도">경상남도</option>
+                    <option value="경상북도">경상북도</option>
+                    <option value="광주광역시">광주광역시</option>
+                    <option value="대구광역시">대구광역시</option>
+                    <option value="부산광역시">부산광역시</option>
+                    <option value="서울특별시">서울특별시</option>
+                    <option value="세종특별자치시">세종특별자치시</option>
+                    <option value="울산광역시">울산광역시</option>
+                    <option value="인천광역시">인천광역시</option>
+                    <option value="전라남도">전라남도</option>
+                    <option value="전라북도">전라북도</option>
+                    <option value="제주특별자치도">제주특별자치도</option>
+                    <option value="충청남도">충청남도</option>
+                    <option value="충청북도">충청북도</option>
                   </select>
                 </span>
               </div>
