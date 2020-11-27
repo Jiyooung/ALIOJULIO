@@ -65,6 +65,8 @@ class cal_week extends React.PureComponent {
       endDayHour,
     } = this.state;
     const { classes } = this.props;
+
+
     return (
       <Grid container spacing={3}  >
         <Grid item xs={2} className={sidebarStyles.form}>
@@ -118,7 +120,8 @@ class cal_week extends React.PureComponent {
             </div>
           </form>
         </Grid>
-        <Grid item xs={10} className={classes.main}>
+        <Grid item xs={10} >
+          <div className={sidebarStyles.calender}>
           <Scheduler
             data={data}
           >
@@ -134,6 +137,7 @@ class cal_week extends React.PureComponent {
             <Toolbar />
             <ViewSwitcher />
           </Scheduler>
+          </div>
         </Grid>
       </Grid>
     );
