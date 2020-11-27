@@ -1,0 +1,45 @@
+
+.label {
+    display: block;
+    margin: 10px;
+}
+
+.input_box {
+    display: block;
+    width: 150px;
+    height: 25px;
+    margin: 10px;
+    border: solid 1px #707070;
+    background-color: #ffffff;
+}
+
+.combo_box {    
+    display: block;
+    width: 150px;
+    height: 25px;
+    margin: 10px;
+}
+
+input[id="menuicon"] {display:none;}
+
+/* 메뉴버튼 */
+.menubtn {display:block;width:50px;height:40px;position:fixed;margin-top:10px;margin-left:10px;cursor:pointer;}
+.menubtn span {display:block;position:absolute;width:25px;height:4px;border-radius:30px;background:#222;transition:all .35s;}
+.menubtn span:nth-child(1) {top:20%;left:50%;transform:translateX(-50%);}
+.menubtn span:nth-child(2) {top:50%;left:50%;transform:translate(-50%,-50%);} 
+.menubtn span:nth-child(3) {bottom:20%;left:50%;transform:translateX(-50%);}
+
+/* 체크 변화값 */
+input[id="menuicon"]:checked ~ .menubtn {z-index:2; }
+input[id="menuicon"]:checked ~ .menubtn span {background:black;}
+input[id="menuicon"]:checked ~ .menubtn span:nth-child(1) {top:50%;left:50%;transform:translate(-50%,-50%) rotate(135deg);}
+input[id="menuicon"]:checked ~ .menubtn span:nth-child(2) {left:50%;transform:translate(-50%,-50%) scale(2);opacity:0;}
+input[id="menuicon"]:checked ~ .menubtn span:nth-child(3) {bottom:50%;left:50%;transform:translate(-50%,50%) rotate(-135deg);}
+input[id="menuicon"]:checked ~ .container .sidebar {left:0;}
+
+/* 컨텐츠영역 */
+.container {width:100%;height:100%;position:relative;}
+.container .sidebar {position: fixed;top:141px;left:-200px;width:200px;height:300px;background:#E0A2BB;z-index:30;transition:.35s;}
+
+/* 각영역의 라벨(중앙정렬) */
+.area_desc {position:absolute; margin-top:150px;left:50%;transform:translate(-50%,-50%);font-size:15px;}
