@@ -1,9 +1,13 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
+    const config = require('./config/key');
+    var aliourl = config.alioURI;
+    var aliokey = config.alioKEY;
+    
     $(document).ready(function () {
 
         var data = {
-            'X-API-AUTH-KEY': 'jVC39euvKCwk0YqoSuEl26kQih0HlRZO/bZK7+LIjLc=',
+            'X-API-AUTH-KEY': aliokey,
             'pageSize': '3', // 데이터 개수
             'schFstCateCd': '', // 행사 유형 대분류
             'schScdCateCd': '', // 행사 유형 소분류
@@ -13,7 +17,7 @@
         };
 
         $.ajax({
-            url: "http://openapi.alioplus.go.kr/api/event",
+            url: aliourl,
             type: "post",
             data: data,
             dataType: "json",
