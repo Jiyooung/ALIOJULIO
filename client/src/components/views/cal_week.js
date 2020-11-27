@@ -52,7 +52,11 @@ class cal_week extends React.PureComponent {
       startDayHour: 9,
       endDayHour: 19,
     };
+    this.keyword="";
+  }
 
+  onSubmitHandler = (event) => {
+    alert(this.keyword);
   }
 
   render() {
@@ -67,20 +71,21 @@ class cal_week extends React.PureComponent {
     return (
       <Grid container spacing={3}>
         <Grid item xs={2} className={classes.asideBar}>
-          <form>
-          <label>키워드</label>
+          <form onSubmit={this.onSubmitHandler}>
+          <label type="keyword" value="this.keyword">키워드</label>
           <input></input>
           <label>행사 분류</label>
           <select className={classes.combobox}>
             <option value="행사1">행사1</option>
             <option value="행사2">행사2</option>
           </select>
-          <label>시, 도명</label>
-          <select>
-            <option value="시,도명">시,도명</option>
-            <option value="서울시">서울시</option>
-            <option value="경기도">경기도</option>
-          </select>
+          <label>시,도명</label>
+          <input></input>
+          <lable>시,군,구명</lable>
+          <input></input>
+          <button type="submit">
+            검색
+          </button>
           </form>
         </Grid>
         <Grid item xs={10}>
