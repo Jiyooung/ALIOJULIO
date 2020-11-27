@@ -2,6 +2,7 @@
 /* eslint-disable react/no-unused-state */
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import { ViewState } from '@devexpress/dx-react-scheduler';
 import {
   Scheduler,
@@ -12,14 +13,20 @@ import {
   AllDayPanel,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { withStyles } from '@material-ui/core/styles';
+import { Button, Checkbox } from '@material-ui/core';
 
 
 const styles = theme => ({
-  addButton: {
-    position: 'absolute',
-    bottom: theme.spacing(1) * 3,
-    right: theme.spacing(1) * 4,
+  container: {
+    
+
   },
+  asideBar: {
+    background: '#E0A2BB',
+    marginTop: '15px'
+  },
+  main: {
+  }
 });
 
 function Date_to_str(date) { // 날짜 객체를 yyyy-mm-dd로 변환하는 함수
@@ -28,7 +35,7 @@ function Date_to_str(date) { // 날짜 객체를 yyyy-mm-dd로 변환하는 함�
   var sDate = date.getDate();
 
   sMonth = sMonth > 9 ? sMonth : "0" + sMonth;
-  sDate  = sDate > 9 ? sDate : "0" + sDate;
+  sDate = sDate > 9 ? sDate : "0" + sDate;
   return sYear + "-" + sMonth + "-" + sDate;
 }
 
@@ -55,24 +62,32 @@ class cal_week extends React.PureComponent {
     const { classes } = this.props;
 
     return (
-      <Paper>
-        <Scheduler
-          data={data}
-          height={660}
-        >
-          <ViewState
-            currentDate={currentDate}
-          />
-          <MonthView />
-          <WeekView
-            startDayHour={startDayHour}
-            endDayHour={endDayHour}
-          />
-          <AllDayPanel />
-          <Toolbar />
-          <ViewSwitcher />
-        </Scheduler>
-      </Paper>
+      <Grid container spacing={3}>
+        <Grid item xs={2} className={classes.asideBar}>
+          <form>
+          <label>키워드</label>
+          <input></input>
+          </form>
+        </Grid>
+        <Grid item xs={10}>
+            <Scheduler
+              data={data}
+              height={660}
+            >
+              <ViewState
+                currentDate={currentDate}
+              />
+              <MonthView />
+              <WeekView
+                startDayHour={startDayHour}
+                endDayHour={endDayHour}
+              />
+              <AllDayPanel />
+              <Toolbar />
+              <ViewSwitcher />
+            </Scheduler>
+        </Grid>
+      </Grid>
     );
   }
 }

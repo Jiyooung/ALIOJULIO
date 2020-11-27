@@ -7,7 +7,6 @@ import {
 
 import Bar_header from './components/views/bar_header';
 import Cal_week from './components/views/cal_week';
-
 class App extends Component {
   render() {
     return (
