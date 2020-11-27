@@ -1,39 +1,41 @@
-
 .label {
     display: block;
-    margin: 10px;
-    font-family: SeoulNamsanB
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size:16px;
+    font-family: SeoulNamsanB;
 }
 
 .input_box {
     display: block;
-    width: 150px;
-    height: 25px;
-    margin: 10px;
+    width: 200px;
+    height: 30px;
+    font-size:15px;
     border: solid 1px #707070;
     background-color: #ffffff;
 }
 
 .combo_box {    
     display: block;
-    width: 150px;
-    height: 25px;
-    margin: 10px;
+    width: 200px;
+    height: 30px;
+    font-size:15px;
 }
 
 .submit_button {
     display: block;
-    width: 150px;
-    height: 25px;
-    margin: 10px;
-    border: solid 1px #c5afaf;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size:15px;
+    border: solid 1px #707070;
     background-color: #ffffff;
 }
 
 input[id="menuicon"] {display:none;}
 
 /* 메뉴버튼 */
-.menubtn {display:block;width:50px;height:40px;position:fixed;margin-top:10px;margin-left:10px;cursor:pointer;}
+.menubtn {display:block;width:50px;height:40px;position:fixed;margin-top:10px;margin-left:5px;cursor:pointer;}
 .menubtn span {display:block;position:absolute;width:25px;height:4px;border-radius:30px;background:#222;transition:all .35s;}
 .menubtn span:nth-child(1) {top:20%;left:50%;transform:translateX(-50%);}
 .menubtn span:nth-child(2) {top:50%;left:50%;transform:translate(-50%,-50%);} 
@@ -46,20 +48,12 @@ input[id="menuicon"]:checked ~ .menubtn span:nth-child(1) {top:50%;left:50%;tran
 input[id="menuicon"]:checked ~ .menubtn span:nth-child(2) {left:50%;transform:translate(-50%,-50%) scale(2);opacity:0;}
 input[id="menuicon"]:checked ~ .menubtn span:nth-child(3) {bottom:50%;left:50%;transform:translate(-50%,50%) rotate(-135deg);}
 input[id="menuicon"]:checked ~ .container .sidebar {left:0;}
-input[id="menuicon"]:checked ~ .calender {left:0px;}
-
-
+input[id="menuicon"]:checked ~ .container .calender {left:260px;}
 
 /* 컨텐츠영역 */
-.container {width:100%;height:100%;position:relative;}
-.container .sidebar {position: fixed;top:141px;left:-200px;width:200px;height:300px;background:#E0A2BB;z-index:30;transition:.35s;}
-
-
-.calender {
-    width:115%;height:100%;
-    left:-200px;
-    transition:.35s;
-}
+.container {height:100%; position:relative;}
+.sidebar {position: fixed;top:140px;left:-250px;width:250px;height:400px;padding:10px;background:#E0A2BB;z-index:30;transition:.35s;}
+.calender {position: absolute; left:60px; right:50px; z-index:30;transition:.35s;}
 
 /* 각영역의 라벨(중앙정렬) */
-.area_desc {position:absolute; margin-top:150px;left:50%;transform:translate(-50%,-50%);font-size:15px;}
+.area_desc {position:absolute; margin-top:150px;left:50%;transform:translate(-50%,-50%);}
