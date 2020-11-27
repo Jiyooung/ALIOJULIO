@@ -49,12 +49,30 @@ class cal_week extends React.PureComponent {
       currentDate: Date_to_str(new Date()), // 현재 날짜로 설정!!
       startDayHour: 9,
       endDayHour: 19,
+      행사유형: "",
+      행사명: "",
+      지역: ""
     };
-    this.keyword="";
+  }
+
+  onEventSelectChange = (event) => {
+    this.setState({행사유형: event.target.value});
+  }
+
+  onLocationSelectChange = (event) => {
+    this.setState({지역: event.target.value});
   }
 
   onSubmitHandler = (event) => {
-    alert(this.keyword);
+    event.preventDefault();
+    let data = {
+      행사명: event.target.행사명.value,
+      행사유형: this.state.행사유형,
+      지역: this.state.지역
+    }
+    alert(data.행사명);
+    alert(data.행사유형);
+    alert(data.지역);
   }
 
   render() {
@@ -81,9 +99,11 @@ class cal_week extends React.PureComponent {
               <div className={sidebarStyles.sidebar}>
                 <span className={sidebarStyles.area_desc}>
                   <label className={sidebarStyles.label}>행사명</label>
-                  <input className={sidebarStyles.input_box}></input>
+                  <input className={sidebarStyles.input_box}
+                  type="행사명" name="행사명"></input>
                   <label className={sidebarStyles.label}>행사유형</label>
-                  <select className={sidebarStyles.combo_box}>
+                  <select className={sidebarStyles.combo_box}
+                  type="행사유형" value={this.state.행사유형} onChange={this.onEventSelectChange}>
                     <option value="전체">전체</option>
                     <option value="견학_탐방">견학 탐방</option>
                     <option value="체험">체험</option>
@@ -95,7 +115,8 @@ class cal_week extends React.PureComponent {
                     <option value="국민참여">국민참여</option>
                   </select>
                   <label className={sidebarStyles.label}>지역</label>
-                  <select className={sidebarStyles.combo_box}>
+                  <select className={sidebarStyles.combo_box}
+                  type="지역" value={this.state.지역} onChange={this.onLocationSelectChange}>
                     <option value="전체">전체</option>
                     <option value="강원도">강원도</option>
                     <option value="경기도">경기도</option>
@@ -122,21 +143,23 @@ class cal_week extends React.PureComponent {
         </Grid>
         <Grid item xs={10} >
           <div className={sidebarStyles.calender}>
-          <Scheduler
-            data={data}
-          >
-            <ViewState
-              currentDate={currentDate}
-            />
-            <MonthView />
-            <WeekView
-              startDayHour={startDayHour}
-              endDayHour={endDayHour}
-            />
-            <AllDayPanel />
-            <Toolbar />
-            <ViewSwitcher />
-          </Scheduler>
+            <div>
+              <Scheduler
+                data={data}
+              >
+                <ViewState
+                  currentDate={currentDate}
+                />
+                <MonthView />
+                <WeekView
+                  startDayHour={startDayHour}
+                  endDayHour={endDayHour}
+                />
+                <AllDayPanel />
+                <Toolbar />
+                <ViewSwitcher />
+              </Scheduler>
+            </div>
           </div>
         </Grid>
       </Grid>

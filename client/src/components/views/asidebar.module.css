@@ -46,6 +46,7 @@ input[id="menuicon"]:checked ~ .menubtn span:nth-child(1) {top:50%;left:50%;tran
 input[id="menuicon"]:checked ~ .menubtn span:nth-child(2) {left:50%;transform:translate(-50%,-50%) scale(2);opacity:0;}
 input[id="menuicon"]:checked ~ .menubtn span:nth-child(3) {bottom:50%;left:50%;transform:translate(-50%,50%) rotate(-135deg);}
 input[id="menuicon"]:checked ~ .container .sidebar {left:0;}
+input[id="menuicon"]:checked ~ .calender {left:0px;}
 
 
 
@@ -55,7 +56,7 @@ input[id="menuicon"]:checked ~ .container .sidebar {left:0;}
 
 
 .calender {
-    width:115%;height:100%;position:relative;
+    width:115%;height:100%;
     left:-200px;
     transition:.35s;
 }
