@@ -26,6 +26,9 @@ const styles = theme => ({
     marginTop: '15px'
   },
   main: {
+  },
+  combobox: {
+    width: '150px'
   }
 });
 
@@ -67,6 +70,17 @@ class cal_week extends React.PureComponent {
           <form>
           <label>키워드</label>
           <input></input>
+          <label>행사 분류</label>
+          <select className={classes.combobox}>
+            <option value="행사1">행사1</option>
+            <option value="행사2">행사2</option>
+          </select>
+          <label>시, 도명</label>
+          <select>
+            <option value="시,도명">시,도명</option>
+            <option value="서울시">서울시</option>
+            <option value="경기도">경기도</option>
+          </select>
           </form>
         </Grid>
         <Grid item xs={10}>
