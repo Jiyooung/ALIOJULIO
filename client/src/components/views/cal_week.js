@@ -14,11 +14,11 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Checkbox } from '@material-ui/core';
-
+import sidebarStyles from './asidebar.module.css';
 
 const styles = theme => ({
   container: {
-    
+
 
   },
   asideBar: {
@@ -26,9 +26,7 @@ const styles = theme => ({
     marginTop: '15px'
   },
   main: {
-  },
-  combobox: {
-    width: '150px'
+    marginLeft: '220px'
   }
 });
 
@@ -63,43 +61,53 @@ class cal_week extends React.PureComponent {
       endDayHour,
     } = this.state;
     const { classes } = this.props;
-
     return (
-      <Grid container spacing={3}>
-        <Grid item xs={2} className={classes.asideBar}>
-          <form>
-          <label>키워드</label>
-          <input></input>
-          <label>행사 분류</label>
-          <select className={classes.combobox}>
-            <option value="행사1">행사1</option>
-            <option value="행사2">행사2</option>
-          </select>
-          <label>시, 도명</label>
-          <select>
-            <option value="시,도명">시,도명</option>
-            <option value="서울시">서울시</option>
-            <option value="경기도">경기도</option>
-          </select>
+      <Grid container spacing={3}  >
+        <Grid item xs={2} >
+          <form className={sidebarStyles.form}>
+            <input type="checkbox" id="menuicon"></input>
+            <label for="menuicon" className={sidebarStyles.menubtn}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+            <div className={sidebarStyles.container}>
+              <div className={sidebarStyles.sidebar}>
+                <span className={sidebarStyles.area_desc}>
+                  <label className={sidebarStyles.label}>키워드</label>
+                  <input className={sidebarStyles.input_box}></input>
+                  <label className={sidebarStyles.label}>행사 분류</label>
+                  <select className={sidebarStyles.combo_box}>
+                    <option value="행사1">행사1</option>
+                    <option value="행사2">행사2</option>
+                  </select>
+                  <label className={sidebarStyles.label}>시, 도명</label>
+                  <select className={sidebarStyles.combo_box}>
+                    <option value="시,도명">시,도명</option>
+                    <option value="서울시">서울시</option>
+                    <option value="경기도">경기도</option>
+                  </select>
+                </span>
+              </div>
+            </div>
           </form>
         </Grid>
-        <Grid item xs={10}>
-            <Scheduler
-              data={data}
-              height={660}
-            >
-              <ViewState
-                currentDate={currentDate}
-              />
-              <MonthView />
-              <WeekView
-                startDayHour={startDayHour}
-                endDayHour={endDayHour}
-              />
-              <AllDayPanel />
-              <Toolbar />
-              <ViewSwitcher />
-            </Scheduler>
+        <Grid item xs={10} className={classes.main}>
+          <Scheduler
+            data={data}
+          >
+            <ViewState
+              currentDate={currentDate}
+            />
+            <MonthView />
+            <WeekView
+              startDayHour={startDayHour}
+              endDayHour={endDayHour}
+            />
+            <AllDayPanel />
+            <Toolbar />
+            <ViewSwitcher />
+          </Scheduler>
         </Grid>
       </Grid>
     );
