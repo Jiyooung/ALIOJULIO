@@ -2,6 +2,7 @@
 .label {
     display: block;
     margin: 10px;
+    font-family: SeoulNamsanB
 }
 
 .input_box {
@@ -18,6 +19,16 @@
     width: 150px;
     height: 25px;
     margin: 10px;
+}
+
+.submit_button {
+    display: block;
+    width: 150px;
+    height: 25px;
+    margin: 10px;
+    border: solid 1px #c5afaf;
+    background-color: #ffffff;
+    font-family: SeoulNamsanB
 }
 
 input[id="menuicon"] {display:none;}

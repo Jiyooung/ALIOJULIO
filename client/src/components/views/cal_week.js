@@ -68,7 +68,7 @@ class cal_week extends React.PureComponent {
     return (
       <Grid container spacing={3}  >
         <Grid item xs={2} className={sidebarStyles.form}>
-          <form >
+          <form onSubmit={this.onSubmitHandler}>
             <input type="checkbox" id="menuicon"></input>
             <label for="menuicon" className={sidebarStyles.menubtn}>
               <span></span>
@@ -112,6 +112,7 @@ class cal_week extends React.PureComponent {
                     <option value="충청남도">충청남도</option>
                     <option value="충청북도">충청북도</option>
                   </select>
+                  <button className={sidebarStyles.submit_button} type="submit">검색</button>
                 </span>
               </div>
             </div>
