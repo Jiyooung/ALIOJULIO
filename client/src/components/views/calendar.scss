@@ -1,0 +1,36 @@
+.calendar{
+    user-select: none;
+    .head{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 8px;
+      button{
+        cursor: pointer;
+        outline: none;
+        display: inline-flex;
+        background: transparent;
+        border: none;
+        font-size: 20pt;
+        padding: 4px;
+        border-radius: 4px;
+        &:hover{
+          background-color: rgba(gray,0.1);
+        }
+        &:active{
+          background-color: rgba(gray,0.5);
+        }
+      }
+      span.title{
+        cursor:pointer;
+        border-radius: 5px;
+        padding: 4px 12px;
+        &:hover{
+          background-color: rgba(gray,0.1);
+        }
+        &:active{
+          background-color: rgba(gray,0.2);
+        }
+      }
+    }
+  }
