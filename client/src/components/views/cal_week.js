@@ -11,10 +11,13 @@ import {
   WeekView,
   ViewSwitcher,
   AllDayPanel,
+  AppointmentTooltip,
+  Appointments
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Checkbox } from '@material-ui/core';
 import sidebarStyles from './asidebar.module.css';
+import {sample_data} from './sample_data'
 
 const styles = theme => ({
   container: {
@@ -45,7 +48,7 @@ class cal_week extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      data: [], // 정보 없음.. 디비에서 불러오는게 목표
+      data: sample_data, // 정보 없음.. 디비에서 불러오는게 목표
       currentDate: Date_to_str(new Date()), // 현재 날짜로 설정!!
       startDayHour: 9,
       endDayHour: 19,
@@ -151,6 +154,8 @@ class cal_week extends React.PureComponent {
                   />
                   <AllDayPanel />
                   <Toolbar />
+                  <Appointments/>
+                  <AppointmentTooltip/>
                   <ViewSwitcher />
                 </Scheduler>
               </span>
