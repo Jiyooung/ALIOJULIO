@@ -20,7 +20,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Asidebar from './asidebar'
 import sidebarStyles from './asidebar.module.css';
 import './calendar.scss';
-import { appointments } from './appointments';
+import {sample_data} from './sample_data'
 
 const styles = theme => ({
   container: {
@@ -47,12 +47,11 @@ function Date_to_str(date) { // 날짜 객체를 yyyy-mm-dd로 변환하는 함�
 }
 
 const resources = [{  // 특정 조건의 일정만 색 부여하기
-  fieldName: 'location',
-  title: 'Location',
+  fieldName: 'id',
+  title: 'ID',
   instances: [
-    { id: '서울시 용산구', text: '용산구', color: '#EC407A' },
-    { id: '서울시 강동구', text: '강동구', color: '#7E57C2' },
-    { id: '서울시 모르겠구,,,', text: '모르겠구,,,', color: '#E0A2BB' },
+    { id: 1, text: 'ID1', color: '#EC407A' },
+    { id: 2, text: 'ID2', color: '#7E57C2' },
   ],
 }];
 
@@ -76,7 +75,7 @@ class cal_week extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      data: appointments, // 정보 없음.. 디비에서 불러오는게 목표
+      data: sample_data, // 정보 없음.. 디비에서 불러오는게 목표
       currentDate: Date_to_str(new Date()), // 현재 날짜로 설정!!
       startDayHour: 9,
       endDayHour: 19,
