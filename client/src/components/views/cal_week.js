@@ -9,17 +9,12 @@ import {
   Toolbar,
   MonthView,
   WeekView,
-  DayView,
-  Appointments,
-  AppointmentTooltip,
   ViewSwitcher,
   AllDayPanel,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Checkbox } from '@material-ui/core';
 import sidebarStyles from './asidebar.module.css';
-
-import { sample_data } from './sample_data'
 
 const styles = theme => ({
   container: {
@@ -50,10 +45,10 @@ class cal_week extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      data: sample_data, // 정보 없음.. 디비에서 불러오는게 목표
-      currentDate: new Date(), // 현재 날짜로 설정!!
-      startDayHour: 8,
-      endDayHour: 22,
+      data: [], // 정보 없음.. 디비에서 불러오는게 목표
+      currentDate: Date_to_str(new Date()), // 현재 날짜로 설정!!
+      startDayHour: 9,
+      endDayHour: 19,
       행사유형: "",
       행사명: "",
       지역: ""
@@ -70,14 +65,14 @@ class cal_week extends React.PureComponent {
 
   onSubmitHandler = (event) => {
     event.preventDefault();
-    let request_data = {
+    let data = {
       행사명: event.target.행사명.value,
       행사유형: this.state.행사유형,
       지역: this.state.지역
     }
-    alert(request_data.행사명);
-    alert(request_data.행사유형);
-    alert(request_data.지역);
+    alert(data.행사명);
+    alert(data.행사유형);
+    alert(data.지역);
   }
 
   render() {
@@ -145,26 +140,18 @@ class cal_week extends React.PureComponent {
               <span>
                 <Scheduler
                   data={data}
-                  height={660}
                 >
                   <ViewState
                     currentDate={currentDate}
-                    defaultCurrentViewName="Week" //디폴트 뷰
                   />
-                  <DayView
-                    startDayHour={startDayHour}
-                    endDayHour={endDayHour}
-                  />
+                  <MonthView />
                   <WeekView
                     startDayHour={startDayHour}
                     endDayHour={endDayHour}
                   />
-                  <MonthView />
                   <AllDayPanel />
                   <Toolbar />
                   <ViewSwitcher />
-                  <Appointments />
-                  <AppointmentTooltip />
                 </Scheduler>
               </span>
             </div>
