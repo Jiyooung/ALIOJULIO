@@ -4,7 +4,9 @@ const port = 5000;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
-
+//const axios = require('axios');
+var aliourl = config.alioURI;
+var aliokey = config.alioKEY;
 
 //클라이언트에 온 데이터를 서버에서 처리
 //application/x-www-form-urlencoded 형식을 잘 가져오도록 도와줌
