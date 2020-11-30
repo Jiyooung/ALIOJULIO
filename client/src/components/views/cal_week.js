@@ -21,6 +21,7 @@ import Asidebar from './asidebar'
 import sidebarStyles from './asidebar.module.css';
 import './calendar.scss';
 import {sample_data} from './sample_data'
+import { Dialog, DialogActions, DialogTitle, DialogContent } from '@material-ui/core';
 
 const styles = theme => ({
   container: {
@@ -55,20 +56,7 @@ const resources = [{  // 특정 조건의 일정만 색 부여하기
   ],
 }];
 
-const Appointment = ({  // 모든 일정 디자인
-  children, style, ...restProps
-}) => (
-  <Appointments.Appointment
-    {...restProps}
-    style={{
-      ...style,
-      backgroundColor: '#E0A2BB',
-      borderRadius: '8px',
-    }}
-  >
-    {children}
-  </Appointments.Appointment>
-);
+
 
 /* eslint-disable-next-line react/no-multi-comp */
 class cal_week extends React.PureComponent {
@@ -79,6 +67,8 @@ class cal_week extends React.PureComponent {
       currentDate: Date_to_str(new Date()), // 현재 날짜로 설정!!
       startDayHour: 9,
       endDayHour: 19,
+      isModalOn:false,
+      curData:[],
       행사유형: "",
       행사명: "",
       지역: ""
@@ -86,6 +76,21 @@ class cal_week extends React.PureComponent {
     this.currentDateChange = (currentDate) => { this.setState({ currentDate }); };
   }
 
+  Appointment = ({  // 모든 일정 디자인
+    children, style, onClick, ...restProps
+  }) => (
+    <Appointments.Appointment
+      {...restProps}
+      style={{
+        ...style,
+        backgroundColor: '#E0A2BB',
+        borderRadius: '8px',
+      }}
+      onClick={this.ScheduleModal}
+    >
+      {children}
+    </Appointments.Appointment>
+  );
   onEventSelectChange = (event) => {
     this.setState({ 행사유형: event.target.value });
   }
@@ -105,6 +110,17 @@ class cal_week extends React.PureComponent {
     // alert(data.행사유형);
     // alert(data.지역);
   }
+  
+  ScheduleModal = (event) => {
+    this.setState({isModalOn:true});
+    this.setState({curData: event.data});
+    //console.log(event);
+  }
+
+  handleColse = (event) => {
+    this.setState({isModalOn:false});
+    this.setState({curData:[]});
+  }
 
   render() {
     const {
@@ -112,6 +128,8 @@ class cal_week extends React.PureComponent {
       data,
       startDayHour,
       endDayHour,
+      isModalOn,
+      curData
     } = this.state;
     const { classes } = this.props;
 
@@ -143,8 +161,9 @@ class cal_week extends React.PureComponent {
                     startDayHour={startDayHour}
                     endDayHour={endDayHour}
                   />
-                  {/* <Appointments appointmentComponent={Appointment} /> */}
-                  <Appointments />
+                  <Appointments appointmentComponent={this.Appointment} />
+                  {/*<Appointments onClick={this.ScheduleModal}
+                  draggable/>*/}
                   <AppointmentTooltip
                     showCloseButton
                   />
@@ -157,6 +176,15 @@ class cal_week extends React.PureComponent {
                     data={resources}
                   />
                 </Scheduler>
+                <Dialog open={this.state.isModalOn} onClose={this.handleColse}>
+                  <DialogContent>
+                <p>이름={curData.title}</p>
+                {/*
+                <p>시작시간={curData.startDate}</p>
+                <p>종료시간={curData.endDate}</p>*/}
+                <p>장소={curData.location}</p>
+                  </DialogContent>
+                </Dialog>
               </span>
             </div>
           </div>
