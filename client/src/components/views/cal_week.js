@@ -20,8 +20,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Asidebar from './asidebar'
 import sidebarStyles from './asidebar.module.css';
 import './calendar.scss';
-import {sample_data} from './sample_data'
+import {sample_data} from './sample_data';
 import { Dialog, DialogActions, DialogTitle, DialogContent } from '@material-ui/core';
+import Simple_modal from './simple_modal';
 
 const styles = theme => ({
   container: {
@@ -177,13 +178,7 @@ class cal_week extends React.PureComponent {
                   />
                 </Scheduler>
                 <Dialog open={this.state.isModalOn} onClose={this.handleColse}>
-                  <DialogContent>
-                <p>이름={curData.title}</p>
-                {/*
-                <p>시작시간={curData.startDate}</p>
-                <p>종료시간={curData.endDate}</p>*/}
-                <p>장소={curData.location}</p>
-                  </DialogContent>
+                  <Simple_modal curdata={curData}></Simple_modal>
                 </Dialog>
               </span>
             </div>

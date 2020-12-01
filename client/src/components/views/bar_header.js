@@ -8,7 +8,10 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = {
     root: {
         background: 'white',
-        color: 'black'
+        color: 'black',
+        shadowOpacity: 0,
+        elevation: 0
+
     },
 }
 class bar_header extends React.Component {
@@ -19,8 +22,6 @@ class bar_header extends React.Component {
             <AppBar className={classes.root} position="static" >
                 <Toolbar>
                     <img src={process.env.PUBLIC_URL + '/image/LOGO.png'} style={{ width: 200, height: 80 }} alt="profile" />
-                    <Button color="inherit" href="/cal_week">캘린더</Button>
-                    <Button color="inherit" href="/cal_week">일정자세히</Button>
                 </Toolbar>
             </AppBar>
         )
