@@ -11,6 +11,7 @@ class asidebar extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
+            selectedKey: -1,
             eventData: sample_data,
             행사명: "",
             행사유형: "",
@@ -68,10 +69,10 @@ class asidebar extends React.PureComponent {
                     onChange={this.onEventNameChange}></input>
                 <div>{mapToComponents(this.state.eventData)}</div>
                 <SearchDetail
-                    appointment={this.state.eventData[this.state.selectedKey]}
-                    isSelected={this.state.selectedKey!=-1}/>
+                    isSelected={this.state.selectedKey!=-1}
+                    appointment={this.state.eventData[this.state.selectedKey]}/>
                 
-                
+
                 <label className={sidebarStyles.label}>행사유형</label>
                 <select className={sidebarStyles.combo_box}
                     type="행사유형" value={this.state.행사유형} onChange={this.onEventSelectChange}>
