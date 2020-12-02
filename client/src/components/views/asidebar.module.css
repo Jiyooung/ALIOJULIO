@@ -32,6 +32,11 @@
     background-color: #ffffff;
 }
 
+.empty_box {
+    display: block;
+    height: 200px;
+}
+
 input[id="menuicon"] {display:none;}
 
 /* 메뉴버튼 */
@@ -52,7 +57,7 @@ input[id="menuicon"]:checked ~ .container .calender {left:260px;}
 
 /* 컨텐츠영역 */
 .container {height:100%; position:relative;}
-.sidebar {position: fixed;top:140px;left:-250px;width:250px;height:400px;padding:10px;background:#E0A2BB;z-index:30;transition:.35s;}
+.sidebar {position: fixed;top:140px;left:-250px;width:250px;height:1000px;padding:10px;background:#E0A2BB;z-index:30;transition:.35s;}
 .calender {position: absolute; left:60px; right:50px; z-index:30;transition:.35s;}
 
 /* 각영역의 라벨(중앙정렬) */

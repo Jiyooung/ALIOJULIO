@@ -3,9 +3,12 @@
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
 import sidebarStyles from './asidebar.module.css';
-import SearchInfo from '../search_info';
-import SearchDetail from '../search_detail';
-import {sample_data} from './sample_data';
+import SearchInfo from './search_info';
+import SearchDetail from './search_detail';
+import Simple_modal from './simple_modal';
+import { sample_data } from './sample_data';
+import { Dialog} from '@material-ui/core';
+
 
 class asidebar extends React.PureComponent {
     constructor(props) {
@@ -13,6 +16,7 @@ class asidebar extends React.PureComponent {
         this.state = {
             selectedKey: -1,
             eventData: sample_data,
+            isModalOn: false,
             행사명: "",
             행사유형: "",
             지역: "",
@@ -28,13 +32,13 @@ class asidebar extends React.PureComponent {
     onLocationSelectChange = (event) => {
         this.setState({ 지역: event.target.value });
     }
-  
+
     onEventNameChange(event) {
         this.setState({
             행사명: event.target.value
         });
     }
-    
+
     onEventNameClick(key) {
         this.setState({
             selectedKey: key
@@ -43,36 +47,48 @@ class asidebar extends React.PureComponent {
         console.log(key, 'is selected');
     }
 
+    openSearchDetail = (event) => {
+        alert(this.state.selectedKey);
+        if (this.state.selectedKey != -1) {
+            this.setState({isModalOn: true});
+        }
+    }
+
+    handleColse = (event) => {
+        this.setState({ isModalOn: false });
+        this.setState({ selectedKey: -1 });
+    }
+
     render() {
+
+        const {
+            selectedKey,
+            eventData,
+            isModalOn,
+            행사명,
+            행사유형,
+            지역,
+        } = this.state;
+
         const mapToComponents = (data) => {
             data.sort((a, b) => { return a.title > b.title; });
-            data = data.filter( 
+            data = data.filter(
                 (appointment) => {
-                    return appointment.title.toLowerCase().indexOf(this.state.행사명) > -1;
+                    return appointment.title.toLowerCase().indexOf(행사명) > -1;
                 }
             );
             return data.map((appointment, i) => {
-                return (<SearchInfo 
-                    appointment={appointment} 
+                return (<SearchInfo
+                    appointment={appointment}
                     key={i}
-                    onClick={ () => { this.onEventNameClick(i) } }/>
+                    onClick={() => { this.onEventNameClick(i) }} />
                 );
             });
         };
 
         return (
             <span className={sidebarStyles.area_desc}>
-                <label className={sidebarStyles.label}>행사명</label>
-                <input className={sidebarStyles.input_box}
-                    type="행사명" name="행사명"
-                    value={this.state.행사명}
-                    onChange={this.onEventNameChange}></input>
-                <div>{mapToComponents(this.state.eventData)}</div>
-                <SearchDetail
-                    isSelected={this.state.selectedKey!=-1}
-                    appointment={this.state.eventData[this.state.selectedKey]}/>
-                
-
+                <span className={sidebarStyles.empty_box}>  </span>
                 <label className={sidebarStyles.label}>행사유형</label>
                 <select className={sidebarStyles.combo_box}
                     type="행사유형" value={this.state.행사유형} onChange={this.onEventSelectChange}>
@@ -107,7 +123,19 @@ class asidebar extends React.PureComponent {
                     <option value="충청남도">충청남도</option>
                     <option value="충청북도">충청북도</option>
                 </select>
-                <button className={sidebarStyles.submit_button} type="submit">검색</button>
+                <label className={sidebarStyles.label}>행사명</label>
+                <input className={sidebarStyles.input_box}
+                    type="행사명" name="행사명"
+                    value={this.state.행사명}
+                    onChange={this.onEventNameChange}></input>
+                <div>{mapToComponents(eventData)}</div>
+                <button className={sidebarStyles.submit_button} type="submit" onClick={this.openSearchDetail}>검색</button>
+                <SearchDetail
+                    isSelected={selectedKey != -1}
+                    appointment={eventData[selectedKey]} />
+                <Dialog open={isModalOn} onClose={this.handleColse}>
+                    <Simple_modal curdata={eventData[selectedKey]}></Simple_modal>
+                </Dialog>
             </span>
         );
     }

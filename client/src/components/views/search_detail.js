@@ -1,4 +1,6 @@
 import React from 'react';
+import { Dialog } from '@material-ui/core';
+import Simple_modal from './simple_modal';
 
 export default class search_detail extends React.Component {
     render() {
@@ -18,8 +20,7 @@ export default class search_detail extends React.Component {
 
         return(
             <div>
-                <h2>Details</h2>
-
+                
                 { /* isSelected props 값에 따라 어떤걸 보여줄지 정한다
                     ternary expression condition ? true : false */ }
 
