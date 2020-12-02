@@ -58,7 +58,6 @@ const resources = [{  // 특정 조건의 일정만 색 부여하기
 }];
 
 
-
 /* eslint-disable-next-line react/no-multi-comp */
 class cal_week extends React.PureComponent {
   constructor(props) {
@@ -92,22 +91,15 @@ class cal_week extends React.PureComponent {
       {children}
     </Appointments.Appointment>
   );
-  onEventSelectChange = (event) => {
-    this.setState({ 행사유형: event.target.value });
-  }
-
-  onLocationSelectChange = (event) => {
-    this.setState({ 지역: event.target.value });
-  }
 
   onSubmitHandler = (event) => {
-    // event.preventDefault();
-    // let data = {
-    //   행사명: event.target.행사명.value,
-    //   행사유형: this.state.행사유형,
-    //   지역: this.state.지역
-    // }
-    // alert(data.행사명);
+    event.preventDefault();
+    let data = {
+      행사명: event.target.행사명.value,
+      행사유형: this.state.행사유형,
+      지역: this.state.지역
+    }
+    alert(data.행사명);
     // alert(data.행사유형);
     // alert(data.지역);
   }
@@ -136,7 +128,7 @@ class cal_week extends React.PureComponent {
 
     return (
       <Paper>
-        <form onSubmit={this.onSubmitHandler}>
+        <form onSubmit={Asidebar.onSubmitHandler}>
           <input type="checkbox" id="menuicon"></input>
           <label for="menuicon" className={sidebarStyles.menubtn}>
             <span></span>

@@ -3,15 +3,21 @@
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
 import sidebarStyles from './asidebar.module.css';
+import SearchInfo from '../search_info';
+import SearchDetail from '../search_detail';
+import {sample_data} from './sample_data';
 
 class asidebar extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            행사유형: "",
+            eventData: sample_data,
             행사명: "",
-            지역: ""
+            행사유형: "",
+            지역: "",
         };
+        this.onEventNameChange = this.onEventNameChange.bind(this);
+        this.onEventNameClick = this.onEventNameClick.bind(this);
     }
 
     onEventSelectChange = (event) => {
@@ -21,25 +27,51 @@ class asidebar extends React.PureComponent {
     onLocationSelectChange = (event) => {
         this.setState({ 지역: event.target.value });
     }
+  
+    onEventNameChange(event) {
+        this.setState({
+            행사명: event.target.value
+        });
+    }
+    
+    onEventNameClick(key) {
+        this.setState({
+            selectedKey: key
+        });
 
-    onSubmitHandler = (event) => {
-        event.preventDefault();
-        let data = {
-            행사명: event.target.행사명.value,
-            행사유형: this.state.행사유형,
-            지역: this.state.지역
-        }
-        alert(data.행사명);
-        alert(data.행사유형);
-        alert(data.지역);
+        console.log(key, 'is selected');
     }
 
     render() {
+        const mapToComponents = (data) => {
+            data.sort((a, b) => { return a.title > b.title; });
+            data = data.filter( 
+                (appointment) => {
+                    return appointment.title.toLowerCase().indexOf(this.state.행사명) > -1;
+                }
+            );
+            return data.map((appointment, i) => {
+                return (<SearchInfo 
+                    appointment={appointment} 
+                    key={i}
+                    onClick={ () => { this.onEventNameClick(i) } }/>
+                );
+            });
+        };
+
         return (
             <span className={sidebarStyles.area_desc}>
                 <label className={sidebarStyles.label}>행사명</label>
                 <input className={sidebarStyles.input_box}
-                    type="행사명" name="행사명"></input>
+                    type="행사명" name="행사명"
+                    value={this.state.행사명}
+                    onChange={this.onEventNameChange}></input>
+                <div>{mapToComponents(this.state.eventData)}</div>
+                <SearchDetail
+                    appointment={this.state.eventData[this.state.selectedKey]}
+                    isSelected={this.state.selectedKey!=-1}/>
+                
+                
                 <label className={sidebarStyles.label}>행사유형</label>
                 <select className={sidebarStyles.combo_box}
                     type="행사유형" value={this.state.행사유형} onChange={this.onEventSelectChange}>
