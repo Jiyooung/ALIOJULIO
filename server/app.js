@@ -4,7 +4,7 @@ const port = 5000;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
-//const axios = require('axios');
+const axios = require('axios');
 var aliourl = config.alioURI;
 var aliokey = config.alioKEY;
 
@@ -16,6 +16,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+// 알리오 플러스에서 데이터 가져오는 코드
+const qs = require('qs');
+axios.post(aliourl, qs.stringify({ "X-API-AUTH-KEY" : aliokey, pageSize : 3 }))
+    .then(function (response) {
+        console.log(response.data);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+/*
 const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI, {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
@@ -25,7 +35,7 @@ mongoose.connect(config.mongoURI, {
 const userRouter = require('./routes/user');
 
 app.use('/api/user',userRouter);
-
+*/
 app.get('/', (req, res) => {
     res.send('Hello World! mod test')
 })
