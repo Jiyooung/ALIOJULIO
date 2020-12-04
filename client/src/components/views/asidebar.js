@@ -21,12 +21,17 @@ class asidebar extends React.PureComponent {
             행사유형: "",
             지역: "",
         };
+        this.onEventSelectChange = this.onEventSelectChange.bind(this);
+        this.onLocationSelectChange = this.onLocationSelectChange.bind(this);
         this.onEventNameChange = this.onEventNameChange.bind(this);
         this.onEventNameClick = this.onEventNameClick.bind(this);
+        this.openSearchDetail = this.openSearchDetail.bind(this);
+        this.handleColse = this.handleColse.bind(this);
     }
 
-    onEventSelectChange = (event) => {
+    onEventSelectChange(event) {
         this.setState({ 행사유형: event.target.value });
+        console.log(event.target.value);
     }
 
     onLocationSelectChange = (event) => {
@@ -34,21 +39,18 @@ class asidebar extends React.PureComponent {
     }
 
     onEventNameChange(event) {
-        this.setState({
-            행사명: event.target.value
-        });
+        this.setState({ 행사명: event.target.value });
     }
 
     onEventNameClick(key) {
-        this.setState({
-            selectedKey: key
-        });
+        this.setState({ selectedKey: key });
 
         console.log(key, 'is selected');
     }
 
+    /** 검색 버튼 */
     openSearchDetail = (event) => {
-        alert(this.state.selectedKey);
+        
         if (this.state.selectedKey != -1) {
             this.setState({isModalOn: true});
         }
@@ -60,7 +62,6 @@ class asidebar extends React.PureComponent {
     }
 
     render() {
-
         const {
             selectedKey,
             eventData,
@@ -80,8 +81,8 @@ class asidebar extends React.PureComponent {
             return data.map((appointment, i) => {
                 return (<SearchInfo
                     appointment={appointment}
-                    key={i}
-                    onClick={() => { this.onEventNameClick(i) }} />
+                    key={appointment.id}
+                    onClick={() => { this.onEventNameClick(appointment.id) }} />
                 );
             });
         };
@@ -91,17 +92,18 @@ class asidebar extends React.PureComponent {
                 <span className={sidebarStyles.empty_box}>  </span>
                 <label className={sidebarStyles.label}>행사유형</label>
                 <select className={sidebarStyles.combo_box}
-                    type="행사유형" value={this.state.행사유형} onChange={this.onEventSelectChange}>
+                    type="행사유형" value={this.state.행사유형} onChange={this.onEventSelectChange} >
                     <option value="전체">전체</option>
-                    <option value="견학_탐방">견학 탐방</option>
+                    <option value="견학/탐방">견학 탐방</option>
                     <option value="체험">체험</option>
-                    <option value="교육_강연">교육 강연</option>
+                    <option value="교육/강연">교육 강연</option>
                     <option value="세미나">세미나</option>
                     <option value="공모전">공모전</option>
                     <option value="자원봉사">자원봉사</option>
-                    <option value="문화_예술">문화 예술</option>
+                    <option value="문화/예술">문화 예술</option>
                     <option value="국민참여">국민참여</option>
                 </select>
+
                 <label className={sidebarStyles.label}>지역</label>
                 <select className={sidebarStyles.combo_box}
                     type="지역" value={this.state.지역} onChange={this.onLocationSelectChange}>

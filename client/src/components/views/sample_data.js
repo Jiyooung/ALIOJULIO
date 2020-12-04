@@ -4,6 +4,7 @@ export const sample_data = [
         startDate: "2020-11-01",
         endDate: "2020-11-30",
         id: 0,
+        type: "문화/예술",
         location: "부산광역시 영도구 해양로301번길 45 (동삼동) 국립해양박물관",
         tel: "010-20202-0202",
         chrgDeptNe: "국립해양박물관"
@@ -13,6 +14,7 @@ export const sample_data = [
         startDate: "2020-11-25",
         endDate: "2020-12-05",
         id: 1,
+        type: "문화/예술",
         location: "부산광역시 영도구 해양로301번길 45 (동삼동) 해양도서관",
         tel: "1111",
         chrgDeptNe: "국립해양박물관"
@@ -22,6 +24,7 @@ export const sample_data = [
         startDate: "2020-11-25",
         endDate: "2020-12-05",
         id: 2,
+        type: "체험",
         location: "부산광역시 영도구 해양로301번길 45 (동삼동) 해양도서관",
         tel: "23232344",
         chrgDeptNe: "국립해양박물관"
@@ -30,7 +33,8 @@ export const sample_data = [
         title: "이것은 월이 0부터 시작한다.",
         startDate: new Date(2020,11,30,5,0),
         endDate: new Date(2020,11,30,7,0),
-        id: 1,
+        id: 3,
+        type: "교육/강연",
         location: "서울시 동작구",
         tel: "11231-3123",
         chrgDeptNe: "국립해양박물관"
@@ -39,7 +43,8 @@ export const sample_data = [
         title: "이것은 아래와 같은 형태로 해야 한다. 두자리 수로 맞춰서 해야한다.",
         startDate: "2021-01-20T05:00",
         endDate: "2021-01-20T10:00",
-        id: 2,
+        id: 4,
+        type: "견학/탐방",
         location: "서울시 동작구",
         chrgDeptNe: "국립해양박물관"
     },

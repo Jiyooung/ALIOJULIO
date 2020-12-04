@@ -20,7 +20,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Asidebar from './asidebar'
 import sidebarStyles from './asidebar.module.css';
 import './calendar.scss';
-import {sample_data} from './sample_data';
+import { sample_data } from './sample_data';
 import { Dialog, DialogActions, DialogTitle, DialogContent } from '@material-ui/core';
 import Simple_modal from './simple_modal';
 
@@ -67,30 +67,30 @@ class cal_week extends React.PureComponent {
       currentDate: Date_to_str(new Date()), // 현재 날짜로 설정!!
       startDayHour: 9,
       endDayHour: 19,
-      isModalOn:false,
-      curData:[],
+      isModalOn: false,
+      curData: [],
       행사유형: "",
       행사명: "",
       지역: ""
     };
     this.currentDateChange = (currentDate) => { this.setState({ currentDate }); };
-  }
+     }
 
   Appointment = ({  // 모든 일정 디자인
     children, style, onClick, ...restProps
   }) => (
-    <Appointments.Appointment
-      {...restProps}
-      style={{
-        ...style,
-        backgroundColor: '#E0A2BB',
-        borderRadius: '8px',
-      }}
-      onClick={this.ScheduleModal}
-    >
-      {children}
-    </Appointments.Appointment>
-  );
+      <Appointments.Appointment
+        {...restProps}
+        style={{
+          ...style,
+          backgroundColor: '#E0A2BB',
+          borderRadius: '8px',
+        }}
+        onClick={this.ScheduleModal}
+      >
+        {children}
+      </Appointments.Appointment>
+    );
 
   onSubmitHandler = (event) => {
     event.preventDefault();
@@ -103,16 +103,16 @@ class cal_week extends React.PureComponent {
     // alert(data.행사유형);
     // alert(data.지역);
   }
-  
+
   ScheduleModal = (event) => {
-    this.setState({isModalOn:true});
-    this.setState({curData: event.data});
+    this.setState({ isModalOn: true });
+    this.setState({ curData: event.data });
     //console.log(event);
   }
 
   handleColse = (event) => {
-    this.setState({isModalOn:false});
-    this.setState({curData:[]});
+    this.setState({ isModalOn: false });
+    this.setState({ curData: [] });
   }
 
   render() {
@@ -137,7 +137,7 @@ class cal_week extends React.PureComponent {
           </label>
           <div className={sidebarStyles.container}>
             <div className={sidebarStyles.sidebar}>
-                <Asidebar/>
+              <Asidebar/>  
             </div>
             <div className={sidebarStyles.calender}>
               <span>
@@ -157,14 +157,14 @@ class cal_week extends React.PureComponent {
                   <Appointments appointmentComponent={this.Appointment} />
                   {/*<Appointments onClick={this.ScheduleModal}
                   draggable/>*/}
-                  <AppointmentTooltip
+                  {/* <AppointmentTooltip
                     showCloseButton
-                  />
-                  <AllDayPanel/>
-                  <Toolbar/>
+                  /> */}
+                  <AllDayPanel />
+                  <Toolbar />
                   <DateNavigator />
                   <TodayButton />
-                  <ViewSwitcher/>
+                  <ViewSwitcher />
                   <Resources
                     data={resources}
                   />
