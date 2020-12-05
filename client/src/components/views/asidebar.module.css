@@ -75,8 +75,8 @@ input[id="menuicon"]:checked ~ .container .sidebar {left:0;}
 input[id="menuicon"]:checked ~ .container .calender {left:260px;}
 
 /* 컨텐츠영역 */
-.container {height:100%; position:relative;}
-.sidebar {position: fixed;top:140px;left:-250px;width:250px;height:1000px;padding:10px;background:#E0A2BB;z-index:30;transition:.35s;}
+.container {height:100%; position:relative; }
+.sidebar {position: fixed;top:140px;left:-250px;width:250px;height:1000px;padding:10px;background:#D0EBFF;z-index:30;transition:.35s; border-radius: 30px 30px 30px 30px;}
 .calender {position: absolute; left:60px; right:50px; z-index:30;transition:.35s;}
 
 /* 각영역의 라벨(중앙정렬) */

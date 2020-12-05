@@ -17,15 +17,12 @@ import {
   Resources,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { withStyles } from '@material-ui/core/styles';
-import Asidebar from './asidebar'
 import sidebarStyles from './asidebar.module.css';
 import './calendar.scss';
 import { getEvents } from './sample_data';
 import { getTypes } from './event_types';
 import Calendar from './calendar'
 import Sidebar from './sidebar'
-import Event_calendar from './event_calendar'
-const styles = theme => ({});
 
 function Date_to_str(date) { // 날짜 객체를 yyyy-mm-dd로 변환하는 함수
   var sYear = date.getFullYear();
@@ -36,16 +33,6 @@ function Date_to_str(date) { // 날짜 객체를 yyyy-mm-dd로 변환하는 함�
   sDate = sDate > 9 ? sDate : "0" + sDate;
   return sYear + "-" + sMonth + "-" + sDate;
 }
-
-const resources = [{  // 특정 조건의 일정만 색 부여하기
-  fieldName: 'id',
-  title: 'ID',
-  instances: [
-    { id: 1, text: 'ID1', color: '#EC407A' },
-    { id: 2, text: 'ID2', color: '#7E57C2' },
-  ],
-}];
-
 
 /* eslint-disable-next-line react/no-multi-comp */
 class cal_week extends React.PureComponent {
@@ -58,9 +45,9 @@ class cal_week extends React.PureComponent {
       endDayHour: 19,
       isModalOn: false,
       curData: [],
+      selectedKey: -1,
       types: [],
       event_title: "",
-      selectedKey: -1,
       location: "",
     };
     this.currentDateChange = (currentDate) => { this.setState({ currentDate }); };
@@ -73,7 +60,7 @@ class cal_week extends React.PureComponent {
         {...restProps}
         style={{
           ...style,
-          backgroundColor: '#E0A2BB',
+          backgroundColor: '#D0EBFF',
           borderRadius: '8px',
         }}
         onClick={this.ScheduleModal}
@@ -159,7 +146,7 @@ class cal_week extends React.PureComponent {
 
     return (
       <Paper>
-        <form onSubmit={Asidebar.onSubmitHandler}>
+        <form>
           <input type="checkbox" id="menuicon"></input>
           <label for="menuicon" className={sidebarStyles.menubtn}>
             <span></span>
@@ -184,7 +171,7 @@ class cal_week extends React.PureComponent {
               />
             </div>
             <div className={sidebarStyles.calender}>
-              <Event_calendar
+              <Calendar
                 events={data}
                 Appointment={this.Appointment}
                 currentDate={this.state.currentDate}
@@ -201,4 +188,4 @@ class cal_week extends React.PureComponent {
   }
 }
 
-export default withStyles(styles, { name: 'EditingCal' })(cal_week);
+export default cal_week;

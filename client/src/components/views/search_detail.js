@@ -1,6 +1,4 @@
 import React from 'react';
-import { Dialog } from '@material-ui/core';
-import Simple_modal from './simple_modal';
 
 export default class search_detail extends React.Component {
     render() {
