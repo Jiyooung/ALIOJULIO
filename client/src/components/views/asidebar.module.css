@@ -2,8 +2,38 @@
     display: block;
     margin-top: 20px;
     margin-bottom: 10px;
-    font-size:16px;
+    font-size:15px;
     font-family: SeoulNamsanB;
+}
+
+ul.list {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;  
+    width: 200px;
+}
+
+ul.list li {
+    display: inline-block;
+    padding: 5px;
+    text-align: center;
+    width: 60px;
+    margin: 2px;
+    border: 1px solid #efefef;
+    font-size: 1px;
+    cursor: pointer;
+}
+
+ul.list li2 {
+    display: inline-block;
+    padding: 5px;
+    text-align: center;
+    width: 62px;
+    height: 35px;
+    margin: 2px;
+    border: 1px solid #efefef;
+    font-size: 1px;
+    cursor: pointer;
 }
 
 .input_box {
@@ -13,25 +43,6 @@
     font-size:15px;
     border: solid 1px #707070;
     background-color: #ffffff;
-}
-
-ul.list {
-    list-style: none;
-    margin: 0px;
-    padding: 0px;  
-    max-width: 900px;
-    width: 200px;
-}
-
-ul.list li {
-    display: inline-block;
-    padding: 10px;
-    text-align: center;
-    width: 90px;
-    margin: 3px;
-    border: 1px solid #efefef;
-    font-size: 12px;
-    cursor: pointer;
 }
 
 .combo_box {    

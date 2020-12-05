@@ -16,7 +16,9 @@ class simple_modal extends React.PureComponent {
             <div className={modalStyles.container}>
                 <label className={modalStyles.label}>제목 : {data.title}</label>
                 <p className = {modalStyles.label}>신청기간 : YYYY-MM-DD ~ YYYY-MM-DD</p>
-                <p>행사기간 : </p>
+                <p>행사기간 : {data.startDate} ~ {data.endDate} </p>
+                <p>행사유형 : {data.type}</p>
+                <p>위치 : {data.location}</p>
                 <p>유-무료 여부 : </p>
                 <p>기관명 : {data.chrgDeptNe} </p>
                 <p>주최구분 : ㅎㅎ</p>

@@ -30,12 +30,22 @@ export const sample_data = [
         chrgDeptNe: "국립해양박물관"
     },
     {
+        title: "알려줄리오 오픈 행사",
+        startDate: "2020-12-15",
+        endDate: "2020-12-16",
+        id: 3,
+        type: "문화/예술",
+        location: "서울특별시 동작구",
+        tel: "11231-3123",
+        chrgDeptNe: "국립해양박물관"
+    },
+    {
         title: "이것은 월이 0부터 시작한다.",
-        startDate: new Date(2020,11,30,5,0),
-        endDate: new Date(2020,11,30,7,0),
+        startDate: "2021-01-07",
+        endDate: "2021-01-09",
         id: 3,
         type: "교육/강연",
-        location: "서울시 동작구",
+        location: "서울특별시 동작구",
         tel: "11231-3123",
         chrgDeptNe: "국립해양박물관"
     },
@@ -45,7 +55,7 @@ export const sample_data = [
         endDate: "2021-01-20T10:00",
         id: 4,
         type: "견학/탐방",
-        location: "서울시 동작구",
+        location: "서울특별시 동작구",
         chrgDeptNe: "국립해양박물관"
     },
 ];

@@ -2,25 +2,14 @@
 /* eslint-disable react/no-unused-state */
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { ViewState } from '@devexpress/dx-react-scheduler';
 import {
-  Scheduler,
-  Toolbar,
-  MonthView,
-  WeekView,
   Appointments,
-  AppointmentTooltip,
-  DateNavigator,
-  TodayButton,
-  ViewSwitcher,
-  AllDayPanel,
-  Resources,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { withStyles } from '@material-ui/core/styles';
 import sidebarStyles from './asidebar.module.css';
 import './calendar.scss';
 import { getEvents } from './sample_data';
 import { getTypes } from './event_types';
+import { getLocations } from './event_locations';
 import Calendar from './calendar'
 import Sidebar from './sidebar'
 
@@ -47,8 +36,8 @@ class cal_week extends React.PureComponent {
       curData: [],
       selectedKey: -1,
       types: [],
+      locations: [],
       event_title: "",
-      location: "",
     };
     this.currentDateChange = (currentDate) => { this.setState({ currentDate }); };
   }
@@ -94,11 +83,17 @@ class cal_week extends React.PureComponent {
 
   componentDidMount() {
     const types = [{ name: "전체" }, ...getTypes()];
-    this.setState({ events: getEvents(), types });
+    const locations = [{ name: "전체" }, ...getLocations()];
+    this.setState({ events: getEvents(), types, locations });
   }
 
   handleTypeSelect = (type) => {
     this.setState({ selectedType: type });
+  };
+
+  handleLocationSelect = (location) => {
+    this.setState({ selectedLocation: location });
+    console.log(location);
   };
 
   onEventNameChange = (event) => {
@@ -120,19 +115,32 @@ class cal_week extends React.PureComponent {
   getPagedData = () => {
     const {
       selectedType,
+      selectedLocation,
       events: allEvents,
     } = this.state;
 
-    const filtered =
+    const filtered_type =
       selectedType && selectedType.name
         ? allEvents.filter((m) => m.type === selectedType.name)
         : allEvents;
 
+    console.log(filtered_type);
+
+    const filtered_location =
+      selectedLocation && selectedLocation.name
+        ? allEvents.filter((m) => m.location.split(" ")[0] === selectedLocation.name)
+        : allEvents;
     // // orderBy() 함수: 정렬된 배열 반환
     // const sorted = _.orderBy(filtered);
+    console.log(filtered_location);
 
     // alltypes 대신 filtered 전달
-    const events = filtered;
+    const events = filtered_type.reduce((result, item) =>
+      filtered_location.some(el => el.id === item.id)
+        ? [...result, item]
+        : result,
+      []
+    );
 
     return { data: events };
   };
@@ -157,9 +165,15 @@ class cal_week extends React.PureComponent {
             <div className={sidebarStyles.sidebar}>
               <Sidebar
                 events={data}
+                // 행사유형 관련
                 typeItems={this.state.types}
                 selectedTypeItem={this.state.selectedType}
                 ontypeItemSelect={this.handleTypeSelect}
+                // 지역 관련
+                locationItems={this.state.locations}
+                selectedLocationItem={this.state.selectedLocation}
+                onlocationItemSelect={this.handleLocationSelect}
+                // 행사명 관련
                 event_title={this.state.event_title}
                 selectedKey={this.state.selectedKey}
                 isModalOn={this.state.isModalOn}

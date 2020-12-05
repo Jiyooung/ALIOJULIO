@@ -11,9 +11,13 @@ const sidebar = (props) => {
   const {
     events,
     typeItems, // 행사유형 데이터
-    textProperty, // 행사유형 name
+    typeProperty, // 행사유형 name
     selectedTypeItem, // 선택한 행사유형 (Default Props)
     ontypeItemSelect, // 행사유형 선택 이벤트 처리기
+    locationItems,    // 지역 데이터
+    locationProperty, // 행사유형 name
+    selectedLocationItem, // 선택한 지역 (Default Props)
+    onlocationItemSelect, // 지역 선택 이벤트 처리기
     event_title, // 행사명
     selectedKey,
     isModalOn,
@@ -47,18 +51,33 @@ const sidebar = (props) => {
         {/* 행사유형 리스트 생성 */}
         {typeItems.map((item) => (
           <li
-            key={item[textProperty]}
+            key={item[typeProperty]}
             onClick={() => ontypeItemSelect(item)}
             className={
               item === selectedTypeItem ? "list-group-item active" : "list-group-item"
             }
           >
-            {item[textProperty]} {/* item[textProperty]는 item.name과 동일 */}
+            {item[typeProperty]} {/* item[typeProperty]는 item.name과 동일 */}
           </li>
         ))}
       </ul>
+      <label className={sidebarStyles.label}>지역</label>
+      <ul className={sidebarStyles.list}>
+        {/* 지역 리스트 생성 */}
+        {locationItems.map((item) => (
+          <li2
+            key={item[locationProperty]}
+            onClick={() => onlocationItemSelect(item)}
+            className={
+              item === selectedLocationItem ? "list-group-item active" : "list-group-item"
+            }
+          >
+            {item[locationProperty]} {/* item[locationProperty]는 item.name과 동일 */}
+          </li2>
+        ))}
+      </ul>
 
-      <label className={sidebarStyles.label}>행사명</label>
+      {/* <label className={sidebarStyles.label}>행사명</label>
       <input className={sidebarStyles.input_box}
         type="event_title" name="event_title"
         value={event_title}
@@ -70,13 +89,14 @@ const sidebar = (props) => {
         appointment={events[selectedKey]} />
       <Dialog open={isModalOn} onClose={handleColse}>
         <Simple_modal curdata={events[selectedKey]}></Simple_modal>
-      </Dialog>
+      </Dialog> */}
     </span>
   );
 }
 
 sidebar.defaultProps = {
-  textProperty: "name",
+  typeProperty: "name",
+  locationProperty: "name",
 };
 
 export default sidebar;
