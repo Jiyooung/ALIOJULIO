@@ -15,6 +15,25 @@
     background-color: #ffffff;
 }
 
+ul.list {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;  
+    max-width: 900px;
+    width: 200px;
+}
+
+ul.list li {
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    width: 90px;
+    margin: 3px;
+    border: 1px solid #efefef;
+    font-size: 12px;
+    cursor: pointer;
+}
+
 .combo_box {    
     display: block;
     width: 200px;
@@ -40,18 +59,18 @@
 input[id="menuicon"] {display:none;}
 
 /* 메뉴버튼 */
-.menubtn {display:block;width:50px;height:40px;position:fixed;margin-top:10px;margin-left:5px;cursor:pointer;}
+.menubtn {display:block;width:40px;height:40px;position:fixed;margin-top:10px;margin-left:5px;cursor:pointer;}
 .menubtn span {display:block;position:absolute;width:25px;height:4px;border-radius:30px;background:#222;transition:all .35s;}
 .menubtn span:nth-child(1) {top:20%;left:50%;transform:translateX(-50%);}
 .menubtn span:nth-child(2) {top:50%;left:50%;transform:translate(-50%,-50%);} 
 .menubtn span:nth-child(3) {bottom:20%;left:50%;transform:translateX(-50%);}
 
 /* 체크 변화값 */
-input[id="menuicon"]:checked ~ .menubtn {z-index:2; }
+input[id="menuicon"]:checked ~ .menubtn {z-index:40; }
 input[id="menuicon"]:checked ~ .menubtn span {background:black;}
 input[id="menuicon"]:checked ~ .menubtn span:nth-child(1) {top:50%;left:50%;transform:translate(-50%,-50%) rotate(135deg);}
 input[id="menuicon"]:checked ~ .menubtn span:nth-child(2) {left:50%;transform:translate(-50%,-50%) scale(2);opacity:0;}
-input[id="menuicon"]:checked ~ .menubtn span:nth-child(3) {bottom:50%;left:50%;transform:translate(-50%,50%) rotate(-135deg);}
+input[id="menuicon"]:checked ~ .menubtn span:nth-child(3) {bottom:50%;left:50%;transform:translate(-50%, 50%) rotate(-135deg);}
 input[id="menuicon"]:checked ~ .container .sidebar {left:0;}
 input[id="menuicon"]:checked ~ .container .calender {left:260px;}
 
