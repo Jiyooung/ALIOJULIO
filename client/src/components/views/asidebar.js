@@ -1,7 +1,6 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable react/no-unused-state */
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
 import sidebarStyles from './asidebar.module.css';
 import SearchInfo from './search_info';
 import SearchDetail from './search_detail';

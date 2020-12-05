@@ -17,26 +17,12 @@ import {
   Resources,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { withStyles } from '@material-ui/core/styles';
-import Asidebar from './asidebar'
 import sidebarStyles from './asidebar.module.css';
 import './calendar.scss';
-import { sample_data } from './sample_data';
-import { Dialog, DialogActions, DialogTitle, DialogContent } from '@material-ui/core';
-import Simple_modal from './simple_modal';
-
-const styles = theme => ({
-  container: {
-
-
-  },
-  asideBar: {
-    background: '#E0A2BB',
-    marginTop: '15px'
-  },
-  main: {
-    marginLeft: '220px'
-  }
-});
+import { getEvents } from './sample_data';
+import { getTypes } from './event_types';
+import Calendar from './calendar'
+import Sidebar from './sidebar'
 
 function Date_to_str(date) { // 날짜 객체를 yyyy-mm-dd로 변환하는 함수
   var sYear = date.getFullYear();
@@ -48,33 +34,24 @@ function Date_to_str(date) { // 날짜 객체를 yyyy-mm-dd로 변환하는 함�
   return sYear + "-" + sMonth + "-" + sDate;
 }
 
-const resources = [{  // 특정 조건의 일정만 색 부여하기
-  fieldName: 'id',
-  title: 'ID',
-  instances: [
-    { id: 1, text: 'ID1', color: '#EC407A' },
-    { id: 2, text: 'ID2', color: '#7E57C2' },
-  ],
-}];
-
-
 /* eslint-disable-next-line react/no-multi-comp */
 class cal_week extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      data: sample_data, // 정보 없음.. 디비에서 불러오는게 목표
+      events: [], // 정보 없음.. 디비에서 불러오는게 목표
       currentDate: Date_to_str(new Date()), // 현재 날짜로 설정!!
       startDayHour: 9,
       endDayHour: 19,
       isModalOn: false,
       curData: [],
-      행사유형: "",
-      행사명: "",
-      지역: ""
+      selectedKey: -1,
+      types: [],
+      event_title: "",
+      location: "",
     };
     this.currentDateChange = (currentDate) => { this.setState({ currentDate }); };
-     }
+  }
 
   Appointment = ({  // 모든 일정 디자인
     children, style, onClick, ...restProps
@@ -115,20 +92,61 @@ class cal_week extends React.PureComponent {
     this.setState({ curData: [] });
   }
 
+  componentDidMount() {
+    const types = [{ name: "전체" }, ...getTypes()];
+    this.setState({ events: getEvents(), types });
+  }
+
+  handleTypeSelect = (type) => {
+    this.setState({ selectedType: type });
+  };
+
+  onEventNameChange = (event) => {
+    this.setState({ event_title: event.target.value });
+  }
+
+  onEventNameClick = (key) => {
+    this.setState({ selectedKey: key });
+
+    console.log(key, 'is selected');
+  }
+  /** 검색 버튼 */
+  openSearchDetail = (event) => {
+    if (this.state.selectedKey != -1) {
+      this.setState({ isModalOn: true });
+    }
+  }
+
+  getPagedData = () => {
+    const {
+      selectedType,
+      events: allEvents,
+    } = this.state;
+
+    const filtered =
+      selectedType && selectedType.name
+        ? allEvents.filter((m) => m.type === selectedType.name)
+        : allEvents;
+
+    // // orderBy() 함수: 정렬된 배열 반환
+    // const sorted = _.orderBy(filtered);
+
+    // alltypes 대신 filtered 전달
+    const events = filtered;
+
+    return { data: events };
+  };
+
+
   render() {
     const {
-      currentDate,
-      data,
-      startDayHour,
-      endDayHour,
-      isModalOn,
-      curData
-    } = this.state;
+      data
+    } = this.getPagedData();
     const { classes } = this.props;
 
     return (
       <Paper>
-        <form onSubmit={Asidebar.onSubmitHandler}>
+        <form>
           <input type="checkbox" id="menuicon"></input>
           <label for="menuicon" className={sidebarStyles.menubtn}>
             <span></span>
@@ -137,42 +155,31 @@ class cal_week extends React.PureComponent {
           </label>
           <div className={sidebarStyles.container}>
             <div className={sidebarStyles.sidebar}>
-              <Asidebar/>  
+              <Sidebar
+                events={data}
+                typeItems={this.state.types}
+                selectedTypeItem={this.state.selectedType}
+                ontypeItemSelect={this.handleTypeSelect}
+                event_title={this.state.event_title}
+                selectedKey={this.state.selectedKey}
+                isModalOn={this.state.isModalOn}
+                curData={this.curData}
+                onEventNameChange={this.onEventNameChange}
+                onEventNameClick={this.onEventNameClick}
+                handleColse={this.handleColse}
+                openSearchDetail={this.openSearchDetail}
+              />
             </div>
             <div className={sidebarStyles.calender}>
-              <span>
-                <Scheduler
-                  data={data}
-                >
-
-                  <ViewState
-                    currentDate={currentDate}
-                    onCurrentDateChange={this.currentDateChange}
-                  />
-                  <MonthView />
-                  <WeekView
-                    startDayHour={startDayHour}
-                    endDayHour={endDayHour}
-                  />
-                  <Appointments appointmentComponent={this.Appointment} />
-                  {/*<Appointments onClick={this.ScheduleModal}
-                  draggable/>*/}
-                  {/* <AppointmentTooltip
-                    showCloseButton
-                  /> */}
-                  <AllDayPanel />
-                  <Toolbar />
-                  <DateNavigator />
-                  <TodayButton />
-                  <ViewSwitcher />
-                  <Resources
-                    data={resources}
-                  />
-                </Scheduler>
-                <Dialog open={this.state.isModalOn} onClose={this.handleColse}>
-                  <Simple_modal curdata={curData}></Simple_modal>
-                </Dialog>
-              </span>
+              <Calendar
+                events={data}
+                Appointment={this.Appointment}
+                currentDate={this.state.currentDate}
+                handleColse={this.handleColse}
+                isModalOn={this.state.isModalOn}
+                curData={this.state.curData}
+                currentDateChange={this.currentDateChange}
+              />
             </div>
           </div>
         </form>
@@ -181,4 +188,4 @@ class cal_week extends React.PureComponent {
   }
 }
 
-export default withStyles(styles, { name: 'EditingCal' })(cal_week);
+export default cal_week;
