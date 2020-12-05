@@ -1,4 +1,4 @@
-const config = require('./config/key');
+const config = require('../config/key');
 const axios = require('axios');
 var aliourl = config.alioURI;
 var aliokey = config.alioKEY;
@@ -7,14 +7,19 @@ let data;
 
 const qs = require('qs');
 
-const init = () => {
-    axios.post(aliourl, qs.stringify({ "X-API-AUTH-KEY": aliokey, pageSize: 2376 }))
+const init = async() => {
+    let data;
+    await axios.post(aliourl, qs.stringify({ "X-API-AUTH-KEY": aliokey, pageSize: 2376 }))
         .then(function (response) {
             data = response.data;
+            console.log("ss");
+            //console.log(data);
         })
         .catch(function (error) {
             console.log(error);
         });
+    return data;
 }
+//init();
 
-module.exports = data;
+module.exports = init;

@@ -15,13 +15,13 @@ class simple_modal extends React.PureComponent {
 
             <form className={modalStyles.container}>
                 <label className={modalStyles.label}>행사명</label>
-                <input className={modalStyles.input_box} value={data.title} disabled={true}></input>
+                <textarea className={modalStyles.input_box} value={data.title} disabled={true}></textarea>
                 <label className={modalStyles.label}>행사 분류</label>
-                <input className={modalStyles.input_box} value={""} disabled={true}></input>
+                <textarea className={modalStyles.input_box} value={data.cateNaPath} disabled={true}></textarea>
                 <label className={modalStyles.label}>기관명</label>
-                <input className={modalStyles.input_box} value={""} disabled={true}></input>
+                <textarea className={modalStyles.input_box} value={data.apbaNa} disabled={true}></textarea>
                 <label className={modalStyles.label}>주소</label>
-                <input className={modalStyles.input_box} value={""} disabled={true}></input>
+                <textarea className={modalStyles.input_box} value={data.address} disabled={true}></textarea>
                 <label className={modalStyles.label}>신청기간</label>
                 <input className={modalStyles.input_box} value={""} disabled={true}></input>
                 <input className={modalStyles.input_box} value={""} disabled={true}></input>
@@ -29,8 +29,7 @@ class simple_modal extends React.PureComponent {
                 <input className={modalStyles.input_box} value={""} disabled={true}></input>
                 <input className={modalStyles.input_box} value={""} disabled={true}></input>
                 <label className={modalStyles.label}>세부내용</label>
-                <input className={modalStyles.input_box} value={""} disabled={true}></input>
-                <label className={modalStyles.label}/>
+                <textarea className={modalStyles.input_box} value={data.evtDsc} disabled={true}></textarea>
             </form>
         )
     }

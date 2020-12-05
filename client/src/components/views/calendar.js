@@ -85,6 +85,7 @@ class calendar extends React.PureComponent {
       <span>
         <Scheduler
           data={events}
+          
         >
 
           <ViewState

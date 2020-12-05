@@ -81,10 +81,10 @@ class cal_week extends React.PureComponent {
     this.setState({ curData: [] });
   }
 
-  componentDidMount() {
+  componentDidMount = async() => {
     const types = [{ name: "전체" }, ...getTypes()];
     const locations = [{ name: "전체" }, ...getLocations()];
-    this.setState({ events: getEvents(), types, locations });
+    this.setState({ events: await getEvents(), types, locations });
   }
 
   handleTypeSelect = (type) => {
