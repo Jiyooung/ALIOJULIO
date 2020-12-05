@@ -9,15 +9,9 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "ejs": "~2.6.1",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "qs": "^6.9.4"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.6"
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.4",
+    "mongoose-auto-increment": "^5.0.1"
   }
 }

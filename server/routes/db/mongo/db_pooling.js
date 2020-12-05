@@ -17,7 +17,7 @@ if (process.env.VCAP_SERVICES) {
 
 } else {
   // local env.
-  url = 'mongodb://d3e35ad5-9f49-43ae-bc85-08e39ec1d8eb:fc23791e-b2d8-402d-b070-90bfbdb5dcfa@10.30.60.53:27017/e37e541c-75de-4f01-8196-63e2d902e768';
+  url = '';
 }
 
 var pooling = generic_pool.Pool({

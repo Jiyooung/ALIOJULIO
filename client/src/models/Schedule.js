@@ -1,9 +1,19 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const saltRounds = 10; //salt의 길이를 정해주는 변수
-const jwt = require('jsonwebtoken');
+var autoIncrement = require('mongoose-auto-increment');
+const config = require('../config/key');
+var mongoACC = config.mongoACC;
+var connection = mongoose.createConnection(mongoACC);
+autoIncrement.initialize(connection);
 
-const scheduleSchema = mongoose.Schema({
+const { Schema } = mongoose;
+
+const scheduleSchema = new Schema({
+    ID:{
+        type: Number,
+        trim:true,
+        required: 1,
+        Unique: 1
+    },
     evtNa: {
         type: String,
         maxlength: 50
@@ -24,7 +34,7 @@ const scheduleSchema = mongoose.Schema({
     },
     address: {
         type: String,
-        maxlength: 50
+        maxlength: 100
     },
     chrgDeptNe: {
         type: String,
@@ -43,6 +53,18 @@ const scheduleSchema = mongoose.Schema({
         trim: true,//공백 삭제
         maxlength: 50
     },
+    aplYn: {
+        type: String,
+        maxlength: 2
+    },
+    aplStDt: {
+        type: String,
+        maxlength: 50
+    },
+    aplEndDt: {
+        type: String,
+        maxlength: 50
+    },
     evtStDt: {
         type: String,
         maxlength: 50
@@ -56,30 +78,30 @@ const scheduleSchema = mongoose.Schema({
         maxlength: 50
     },
     evtDsc: {
-        type: String,
-        maxlength: 100
+        type: String
     },
     payYnNa: {//유료, 무료 여부
         type: String,
         maxlength: 6,
         default: "무료"
     },
-    payDsc: {
-        type: String,
-        maxlength: 100
-    },
     cateNa: {//강연,포럼,기타등
         type: String,
-        maxlength: 6
-    },
-    token: {
-        type: String
-    },
-    tokenExp: {//유효기간
-        type: Number
+        maxlength: 10
     }
 })
 
+scheduleSchema.plugin(autoIncrement.plugin,{
+     model : 'scheduleSchema',
+     field : 'ID',
+     startAt : 0, //시작
+     increment : 1 // 증가
+    }
+);
+module.exports = mongoose.model('Schedule', scheduleSchema);
+
+/*
 const Schedule = mongoose.model('Schedule', scheduleSchema)//스키마를 감싸는 모델
 
 module.exports = { Schedule }//외부에서 사용할 수 있도록 설정
+*/
