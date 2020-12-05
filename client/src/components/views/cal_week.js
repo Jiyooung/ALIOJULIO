@@ -83,7 +83,7 @@ class cal_week extends React.PureComponent {
         {...restProps}
         style={{
           ...style,
-          backgroundColor: '#E0A2BB',
+          backgroundColor: '#D0EBFF',
           borderRadius: '8px',
         }}
         onClick={this.ScheduleModal}
