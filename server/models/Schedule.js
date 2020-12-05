@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-var autoIncrement = require('mongoose-auto-increment');
 const config = require('../config/key');
 var mongoACC = config.mongoACC;
 var connection = mongoose.createConnection(mongoACC);
@@ -91,17 +90,17 @@ const scheduleSchema = new Schema({
     }
 })
 
-scheduleSchema.plugin(autoIncrement.plugin,{
-     model : 'scheduleSchema',
-     field : 'ID',
-     startAt : 0, //시작
-     increment : 1 // 증가
-    }
-);
+scheduleSchema.plugin(autoIncrement.plugin,{ 
+    model : 'scheduleSchema',
+    field : 'ID', 
+    startAt : 1, //시작 
+    increment : 1 // 증가 
+});
+
+scheduleSchema.statics.findAll = function () {
+    // return promise
+    // V4부터 exec() 필요없음
+    return this.find({});
+};
+
 module.exports = mongoose.model('Schedule', scheduleSchema);
-
-/*
-const Schedule = mongoose.model('Schedule', scheduleSchema)//스키마를 감싸는 모델
-
-module.exports = { Schedule }//외부에서 사용할 수 있도록 설정
-*/
