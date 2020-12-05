@@ -1,19 +1,30 @@
 .container {
     height: 500px;
     width: 500px;
+    flex: 4;
+    flex-direction: row;
 }
 
 .label {
+    flex: 1;
     display: block;
     margin-top: 20px;
     margin-bottom: 10px;
     font-size:16px;
-    background-color: wheat;
-    color: blue;
+    font-weight: bold;
+    margin-left: 10px;
+    width: 100px;
     font-family: SeoulNamsanB;
 }
 
-.result-box {
+.result_box {
     display: block;
-    font-weight: normal
+    font-weight: normal;
+}
+
+.input_box {
+    display: block;
+    flex: 3;
+    width: 300px;
+    margin-left: 10px;
 }

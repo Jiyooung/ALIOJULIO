@@ -8,17 +8,13 @@ import {
   MonthView,
   WeekView,
   Appointments,
-  AppointmentTooltip,
   DateNavigator,
   TodayButton,
   ViewSwitcher,
   AllDayPanel,
-  Resources,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { withStyles } from '@material-ui/core/styles';
 import './calendar.scss';
-import { sample_data } from './sample_data';
-import { Dialog, DialogActions, DialogTitle, DialogContent } from '@material-ui/core';
+import { Dialog } from '@material-ui/core';
 import Simple_modal from './simple_modal';
 
 function Date_to_str(date) { // 날짜 객체를 yyyy-mm-dd로 변환하는 함수
@@ -69,7 +65,6 @@ class calendar extends React.PureComponent {
   ScheduleModal = (event) => {
     this.setState({ isModalOn: true });
     this.setState({ curData: event.data });
-    //console.log(event);
   }
 
   handleColse = (event) => {
@@ -80,13 +75,11 @@ class calendar extends React.PureComponent {
   render() {
     const {
       currentDate,
-      data,
       startDayHour,
       endDayHour,
-      isModalOn,
       curData
     } = this.state;
-    const { classes, events } = this.props;
+    const { events } = this.props;
 
     return (
       <span>
@@ -104,11 +97,6 @@ class calendar extends React.PureComponent {
             endDayHour={endDayHour}
           />
           <Appointments appointmentComponent={this.Appointment} />
-          {/*<Appointments onClick={this.ScheduleModal}
-                  draggable/>*/}
-          {/* <AppointmentTooltip
-                    showCloseButton
-                  /> */}
           <AllDayPanel />
           <Toolbar />
           <DateNavigator />
