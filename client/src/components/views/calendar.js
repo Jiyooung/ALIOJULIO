@@ -13,7 +13,6 @@ import {
   ViewSwitcher,
   AllDayPanel,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import './calendar.scss';
 import { Dialog } from '@material-ui/core';
 import Simple_modal from './simple_modal';
 
@@ -96,7 +95,6 @@ class calendar extends React.PureComponent {
       <span>
         <Scheduler
           data={events}
-          height="150%"
         >
 
           <ViewState
@@ -104,18 +102,12 @@ class calendar extends React.PureComponent {
             onCurrentDateChange={this.currentDateChange}
           />
           <MonthView
-            height="150%"
             layoutComponent = {MonthView.Layout}/>
-          <WeekView
-            startDayHour={startDayHour}
-            endDayHour={endDayHour}
-          />
           <Appointments appointmentComponent={this.Appointment} />
           <AllDayPanel />
           <Toolbar />
           <DateNavigator />
           <TodayButton />
-          <ViewSwitcher />
         </Scheduler>
         <Dialog open={this.state.isModalOn} onClose={this.handleColse}>
           <Simple_modal curdata={curData}></Simple_modal>

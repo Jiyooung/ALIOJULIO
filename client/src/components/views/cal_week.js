@@ -6,7 +6,6 @@ import {
   Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import sidebarStyles from './asidebar.module.css';
-import './calendar.scss';
 import { getEvents } from './sample_data';
 import { getTypes } from './event_types';
 import { getLocations } from './event_locations';
