@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unused-state */
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
-import sidebarStyles from './sidebar.module.css';
+import sidebarStyles from '../css/sidebar.module.css';
 import { getEvents } from './getData';
 import { getTypes, getLocations } from '../../_actions/types';
 import Calendar from './calendar'

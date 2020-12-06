@@ -1,5 +1,5 @@
 import * as React from 'react';
-import modalStyles from './modal.module.css';
+import modalStyles from '../css/modal.module.css';
 
 class simple_modal extends React.PureComponent {
     constructor(props) {

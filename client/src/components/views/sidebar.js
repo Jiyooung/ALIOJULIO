@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable react/no-unused-state */
 import * as React from 'react';
-import sidebarStyles from './sidebar.module.css';
+import sidebarStyles from '../css/sidebar.module.css';
 
 const sidebar = (props) => {
   const {
