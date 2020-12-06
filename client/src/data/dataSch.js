@@ -2,7 +2,6 @@ const config = require('../config/key');
 const axios = require('axios');
 var aliourl = config.alioURI;
 var aliokey = config.alioKEY;
-let data;
 // 알리오 플러스에서 데이터 가져오는 코드
 
 const qs = require('qs');

@@ -52,16 +52,6 @@ ul.list li2 {
     font-size:15px;
 }
 
-.submit_button {
-    display: block;
-    width: 200px;
-    height: 30px;
-    margin-top: 20px;
-    font-size:15px;
-    border: solid 1px #707070;
-    background-color: #ffffff;
-}
-
 .empty_box {
     display: block;
     height: 200px;
@@ -92,10 +82,3 @@ input[id="menuicon"]:checked ~ .container .calender {left:260px;}
 
 /* 각영역의 라벨(중앙정렬) */
 .area_desc {position:absolute; margin-top:150px;left:50%;transform:translate(-50%,-50%);}
-
-.search_label {
-    display: block;
-    font-size:10px;
-    font-family: SeoulNamsanB;
-    cursor:pointer;
-}
