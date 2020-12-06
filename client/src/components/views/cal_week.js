@@ -81,7 +81,7 @@ class cal_week extends React.PureComponent {
     this.setState({ curData: [] });
   }
 
-  componentDidMount = async() => {
+  componentDidMount = async () => {
     const types = [{ name: "전체" }, ...getTypes()];
     const locations = [{ name: "전체" }, ...getLocations()];
     this.setState({ events: await getEvents(), types, locations });
@@ -125,7 +125,15 @@ class cal_week extends React.PureComponent {
       eventType = selectedType.name;
     }
     if (selectedLocation && selectedLocation.name && selectedLocation.name != "전체") {
-      eventLocation = selectedLocation.name;
+      if (selectedLocation.name == "세종시") {
+        eventLocation = "세종특별자치시";
+      }
+      else if (selectedLocation.name == "제주시") {
+        eventLocation = "제주특별자치도";
+      }
+      else {
+        eventLocation = selectedLocation.name;
+      }
     }
 
     const events = allEvents.filter(e => {
