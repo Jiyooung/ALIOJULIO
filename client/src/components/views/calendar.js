@@ -62,6 +62,17 @@ class calendar extends React.PureComponent {
       </Appointments.Appointment>
     );
 
+
+  MonthLayout = ({  // 모든 일정 디자인
+    setScrollingStrategy, ...restProps
+  }) => (
+      <MonthView.Layout
+        {...restProps}
+        scrolling
+      >
+      </MonthView.Layout>
+    );
+
   ScheduleModal = (event) => {
     this.setState({ isModalOn: true });
     this.setState({ curData: event.data });
@@ -85,6 +96,7 @@ class calendar extends React.PureComponent {
       <span>
         <Scheduler
           data={events}
+          height="150%"
         >
 
           <ViewState
@@ -92,7 +104,8 @@ class calendar extends React.PureComponent {
             onCurrentDateChange={this.currentDateChange}
           />
           <MonthView
-            height="1500"/>
+            height="150%"
+            layoutComponent = {MonthView.Layout}/>
           <WeekView
             startDayHour={startDayHour}
             endDayHour={endDayHour}
