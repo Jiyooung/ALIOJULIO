@@ -119,6 +119,19 @@ class cal_week extends React.PureComponent {
       events: allEvents,
     } = this.state;
 
+    let eventType = "";
+    let eventLocation = "";
+    if (selectedType && selectedType.name && selectedType.name != "전체") {
+      eventType = selectedType.name;
+    }
+    if (selectedLocation && selectedLocation.name && selectedLocation.name != "전체") {
+      eventLocation = selectedLocation.name;
+    }
+
+    const events = allEvents.filter(e => {
+      return e.cateNaPath.includes(eventType) && e.address.includes(eventLocation);
+    })
+    /*
     const filtered_type =
       selectedType && selectedType.name
         ? allEvents.filter((m) => m.type === selectedType.name)
@@ -140,7 +153,7 @@ class cal_week extends React.PureComponent {
         ? [...result, item]
         : result,
       []
-    );
+    );*/
 
     return { data: events };
   };

@@ -65,6 +65,12 @@ const sample_data = [
 
 export const getEvents = async() => {
     let data = await db_data();
+    /*
+    data = data.filter(element => {
+        let key = element.chrgTel.replace('-','');
+        let keyNum = parseInt(key);
+        return (keyNum % 11 == 0);
+    })*/
     data.forEach(element => {
         element['title'] = element.evtNa;
         element['startDate'] = element.evtStDt;
