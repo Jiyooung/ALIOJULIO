@@ -27,3 +27,11 @@
     width: 400px;
     margin-left: 10px;
 }
+
+.detail_box {
+    display: block;
+    width: 400px;
+    height: 300px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}

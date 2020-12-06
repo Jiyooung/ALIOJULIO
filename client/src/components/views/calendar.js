@@ -85,14 +85,14 @@ class calendar extends React.PureComponent {
       <span>
         <Scheduler
           data={events}
-          
         >
 
           <ViewState
             currentDate={currentDate}
             onCurrentDateChange={this.currentDateChange}
           />
-          <MonthView />
+          <MonthView
+            height="1500"/>
           <WeekView
             startDayHour={startDayHour}
             endDayHour={endDayHour}
